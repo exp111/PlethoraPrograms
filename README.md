@@ -19,9 +19,9 @@ Download the programs with wget or pastebin.
 Just start the program and toggle features with the hotkeys (default: NumPad4 - NumPad9; configurable)
 
 ## Pastebin
-NeuralInterface: https://pastebin.com/0aFrJCPF
-Modem: https://pastebin.com/jh2FNSv9
+* NeuralInterface: https://pastebin.com/0aFrJCPF
+* Modem: https://pastebin.com/jh2FNSv9
 
 ## Problems
-Can't use the hotkeys? Open the neural connector or install a keyboard.
-Not enough module space in the neural interface? Deinstall the chat recorder and use a ender modem as a peripheral.
+* Can't use the hotkeys? Open the neural connector or install a keyboard.
+* Not enough module space in the neural interface? Deinstall the chat recorder and use a ender modem as a peripheral.
