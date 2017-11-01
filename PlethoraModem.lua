@@ -29,7 +29,7 @@ parallel.waitForAny(
 	function()
 		while true do
 			local event, message, pattern = os.pullEvent("chat_capture")
-			if (message = getTime()) then
+			if (message = "getTime()") then
 				local day = manipulator.getDay()
 				local gameTime = manipulator.getTime();
         			local hours = gameTime / 1000 + 6
