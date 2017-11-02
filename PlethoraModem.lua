@@ -33,11 +33,11 @@ parallel.waitForAny(
 	function()
 		while true do
 			local event, message, pattern = os.pullEvent("chat_capture")
-			if message = "getTime()" and clock then
+			if message == "getTime()" and clock then
 				local day = manipulator.getDay()
-				local gameTime = manipulator.getTime();
-        			local hours = gameTime / 1000 + 6 --0 equals 6:00
-        			local minutes = (gameTime % 1000) * 60 / 1000
+				local gameTime = manipulator.getTime()
+        			local hours = (gameTime - (gameTime % 1000)) / 1000 + 6 --0 equals 6:00
+        			local minutes = math.floor((gameTime % 1000) * 60 / 1000)
         			if hours >= 24 then
             				hours = hours - 24
         			end
@@ -45,11 +45,13 @@ parallel.waitForAny(
        	 			if hours == 0 then 
 					hours = 24 
 				end
-
-        			mm = string.sub(minutes, 0, 2);
+				
+				if (string.len(minutes) < 2) then
+					minutes = "0" .. minutes
+				end
  
-        			local finaltime = hours .. ":" .. mm;
-				manipulator.tell("It's " .. finaltime .. " on the " .. day + 1.. ". day.")
+        			local finaltime = hours .. ":" .. minutes;
+				manipulator.tell("It's " .. finaltime .. " on the " .. day + 1 .. ". day.")
 			end
 		end
 	end
