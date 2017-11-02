@@ -13,6 +13,10 @@ end
 if manipulator.hasModule("plethora:chat") == false then
 	error("We need the chat module", 0)
 end
+clock = true
+if manipulator.hasModule("minecraft:clock") == false then
+	clock = false
+end
 
 manipulator.capture("getTime()")
 --Main Loop
@@ -29,31 +33,23 @@ parallel.waitForAny(
 	function()
 		while true do
 			local event, message, pattern = os.pullEvent("chat_capture")
-			if (message = "getTime()") then
+			if message = "getTime()" and clock then
 				local day = manipulator.getDay()
 				local gameTime = manipulator.getTime();
-        			local hours = gameTime / 1000 + 6
+        			local hours = gameTime / 1000 + 6 --0 equals 6:00
         			local minutes = (gameTime % 1000) * 60 / 1000
-        			local ampm = "AM"
-        			if (hours >= 12) then
-            				hours -= 12 
-					ampm = "PM"
+        			if hours >= 24 then
+            				hours = hours - 24
         			end
  
-        			if (hours >= 12) then
-            				hours -= 12
- 					ampm = "AM"
-        			end
- 
-       	 			if (hours == 0) then 
-					hours = 12 
+       	 			if hours == 0 then 
+					hours = 24 
 				end
+
+        			mm = string.sub(minutes, 0, 2);
  
-        			local mm = "0" .. minutes
-        			mm = strsub(mm, strlen(mm) - 2, strlen(mm));
- 
-        			local finaltime = hours .. ":" .. mm .. " " .. ampm;
-				manipulator.tell("It's " .. finaltime .. " on the " .. day .. ". day.")
+        			local finaltime = hours .. ":" .. mm;
+				manipulator.tell("It's " .. finaltime .. " on the " .. day + 1.. ". day.")
 			end
 		end
 	end
